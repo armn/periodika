@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ issue?.periodical?.title }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" value="articles">
+    <ion-segment-button value="articles">
+      <ion-icon name="newspaper"></ion-icon>
+      <ion-label>Raksti ({{issue?.articles?.length}})</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ads">
+      <ion-icon name="pricetags"></ion-icon>
+      <ion-label>Reklāmas ({{issue?.ads?.length}})</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="viewing == 'articles'">
+    <ion-item *ngFor="let item of issue.articles">
+      <ion-label (click)="viewItem(item)">{{ item.title }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="viewing == 'ads'">
+    <ion-item *ngFor="let item of issue.ads">
+      <ion-label (click)="viewItem(item)" [innerHTML]="item.title"></ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

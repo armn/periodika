@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://periodika.laacz.lv",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
