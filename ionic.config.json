@@ -1,0 +1,7 @@
+{
+  "name": "periodika",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
