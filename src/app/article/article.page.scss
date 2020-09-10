@@ -1,3 +1,14 @@
 main {
   padding: 10px 15px;
 }
+
+.images {
+  display: block;
+  text-align: center;
+}
+
+.image {
+  max-width: 100%;
+  width: auto;
+  display: inline-block;
+}

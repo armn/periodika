@@ -1,20 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Periodika </ion-title>
+    <ion-title>Periodika</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <ion-spinner *ngIf="loading"></ion-spinner>
-
-    <div *ngIf="!loading">
-      <main><h1>{{ data?.date | date }}</h1></main>
+    <div>
+      <main>
+        <small>Ko rakstīja presē pirms 100 gadiem?</small>
+        <h1 class="date">{{ data.date | date:'fullDate' }}</h1>
+      </main>
       <ion-list>
-        <ion-item *ngFor="let issue of data?.issues">
-          <ion-label (click)="openIssue(issue)"
-            >{{ issue?.periodical?.title }}</ion-label
-          >
+        <ion-item *ngFor="let issue of data.issues" (click)="openIssue(issue)">
+          <ion-label>{{ issue.periodical.title }}</ion-label>
         </ion-item>
       </ion-list>
     </div>

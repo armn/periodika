@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import {
+  Router,
+  ActivatedRouteSnapshot,
+  ActivatedRoute,
+} from "@angular/router";
 
 @Component({
   selector: "app-issue",
@@ -10,19 +14,23 @@ export class IssuePage implements OnInit {
   issue: any = null;
   viewing: string = "articles";
 
-  constructor(private router: Router) {
-    this.issue = this.router.getCurrentNavigation().extras?.state?.data;
-  }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log(this.issue);
+    const issueId = this.route.snapshot.paramMap.get("issueId");
+    if (this.route.snapshot.data["data"]) {
+      const data = this.route.snapshot.data["data"];
+      this.issue = data.issues.find((issue) => issue.id == issueId);
+    }
   }
 
   segmentChanged(event: any) {
     this.viewing = event.detail.value;
   }
 
-  viewItem(item: any) {
-    this.router.navigate(["/article"], { state: { data: { ...item } } });
+  viewItem(article: any) {
+    this.router.navigate([
+      `/issue/${this.route.snapshot.paramMap.get("issueId")}/${article.id}`,
+    ]);
   }
 }

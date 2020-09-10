@@ -27,7 +27,10 @@
 
   <ion-list *ngIf="viewing == 'ads'">
     <ion-item *ngFor="let item of issue.ads">
-      <ion-label (click)="viewItem(item)" [innerHTML]="item.title"></ion-label>
+      <ion-label
+        (click)="viewItem(item)"
+        [innerHTML]="item.content"
+      ></ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
